@@ -1,26 +1,12 @@
 const fs = require('fs');
 
-/**
- * Decode a value from a given base to decimal
- * @param {string} base - The base of the number system
- * @param {string} value - The encoded value
- * @returns {number} - The decoded decimal value
- */
 function decodeValue(base, value) {
     return parseInt(value, parseInt(base));
 }
-
-/**
- * Parse the JSON input and extract points (x, y)
- * @param {object} jsonData - The parsed JSON object
- * @returns {object} - Object containing points array and k value
- */
 function parseInput(jsonData) {
     const n = jsonData.keys.n;
     const k = jsonData.keys.k;
     const points = [];
-
-    // Extract all points except the 'keys' object
     for (let key in jsonData) {
         if (key !== 'keys') {
             const x = parseInt(key);
@@ -35,11 +21,7 @@ function parseInput(jsonData) {
     return { points, k };
 }
 
-/**
- * @param {Array} points - Array of {x, y} points
- * @param {number} k - Minimum number of points to use
- * @returns {number} - The constant term C
- */
+
 function lagrangeInterpolation(points, k) {
 
     const selectedPoints = points.slice(0, k);
@@ -96,3 +78,4 @@ function main() {
     }
 }
 main();
+
